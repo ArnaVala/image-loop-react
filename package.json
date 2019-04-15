@@ -2,10 +2,9 @@
   "name": "image-loop",
   "version": "0.1.0",
   "private": true,
-  "homepage": "av-react-image-loop.netlify.com",
+  "homepage": "https://av-react-image-loop.netlify.com",
   "author": "Arna Vala",
   "repository": "https://github.com/ArnaVala/image-loop-react",
-  "keywords": "react",
   "dependencies": {
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
