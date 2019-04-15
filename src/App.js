@@ -18,12 +18,14 @@ const App = () => {
     image6
   ];
 
+  //control loop speed lower number faster
+  //preview image displays before load
   return (
     <>
       <ImageLoop 
         images={images}
         preview={image1}
-        speed="200"
+        speed="600"
       />
     </>
   );

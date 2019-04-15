@@ -1,8 +1,44 @@
-import React from 'react';
+import React from "react";
+import styled from "styled-components";
+
+
+const Loop = styled.div`
+  position: relative;
+  display: flex;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    position: absolute;
+    width: 90%;
+    height: auto;
+    max-width: 675px;
+    object-fit: cover;
+    opacity: 0;
+    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.2);
+
+
+    &.active {
+      opacity: 1;
+    }
+
+    &.preview {
+      opacity: 1;
+      z-index: 2;
+
+      &.done {
+        opacity: 0;
+      }
+    }
+  }
+`;
 
 class ImageLoop extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       currentImage: 0,
       count: 0
@@ -20,7 +56,7 @@ class ImageLoop extends React.Component {
   startLooping = () => {
     this.interval = setInterval(() => {
       if (this.state.currentImage < this.props.images.length - 1) {
-        this.setState(state => ({ currentImage: state.currentImage + 1 })); 
+        this.setState(state => ({ currentImage: state.currentImage + 1 }));
       } else {
         this.setState(state => ({ currentImage: 0 }));
       }
@@ -33,27 +69,31 @@ class ImageLoop extends React.Component {
 
   render() {
     const { currentImage } = this.state;
-  
-    return (
-      <div className="image-loop">
-        <img 
-          src={this.props.preview}
-          className={
-            this.state.count >= this.props.images.length
-            ? "preview done"
-            : "preview"
-          }
-        />
-        {this.props.images.map((image, index ) => (
-          <img
-            key={index}
-            className={currentImage === index ? "active" : ""}
-            src={image}
-            onLoad={this.countImages}
-          />
 
-        ))}
-      </div>
+    return (
+      <>
+        <Loop>
+          <h1 className="app__name">Image Loop React Component</h1>
+          <img
+            src={this.props.preview}
+            alt={" "}
+            className={
+              this.state.count >= this.props.images.length
+                ? "preview done"
+                : "preview"
+            }
+          />
+          {this.props.images.map((image, index) => (
+            <img
+              key={index}
+              className={currentImage === index ? "active" : ""}
+              src={image}
+              onLoad={this.countImages}
+              alt={""}
+            />
+          ))}
+        </Loop>
+      </>
     );
   }
 }
